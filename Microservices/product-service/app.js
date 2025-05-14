@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Product Service API');
+});
+
 app.get('/health', (req, res) => {
   res.json({ status: 'Product Service is healthy' });
 });

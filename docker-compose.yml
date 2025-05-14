@@ -7,8 +7,27 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - app-network
+      - backend
+
+  product-service:
+    build:
+      context: ./Microservices/product-service
+    ports:
+      - "3001:3001"
+    networks:
+      - backend
+
+  gateway-service:
+    build:
+      context: ./Microservices/gateway-service
+    ports:
+      - "3003:3003"
+    networks:
+      - backend
+    depends_on:
+      - user-service
+      - product-service
 
 networks:
-  app-network:
+  backend:
     driver: bridge
